@@ -15,8 +15,7 @@ namespace InterCapstone.FormApp
 {
     public partial class CapstoneFormApp : Form
     {
-        public string[] ports;
-
+        ArduinoController arduinoController = new ArduinoController();
         public CapstoneFormApp()
         {
             InitializeComponent();
@@ -34,19 +33,26 @@ namespace InterCapstone.FormApp
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
+            arduinoController.SetComPort();
+            arduinoController.SendCommandToPin("HIGH",3);
         }
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            this.ports = ArduinoController.GetPorts();
-            if (ports != null)
-                ComPortsDropDown.DataSource = this.ports;
+            arduinoController.ports = ArduinoController.GetPorts();
+            if (arduinoController.ports != null)
+                ComPortsDropDown.DataSource = arduinoController.ports;
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void LedOff_Btn_Click(object sender, EventArgs e)
+        {
+            arduinoController.SetComPort();
+            arduinoController.SendCommandToPin("LOW", 3);
         }
     }
 }

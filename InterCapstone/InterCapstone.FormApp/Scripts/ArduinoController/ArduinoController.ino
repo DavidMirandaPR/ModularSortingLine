@@ -4,13 +4,6 @@
  *
  * 
  */
- //Setup Constant Variables
- const int led_on = 1;
- const int led_off = 2;
-//Setup Output
-
-int ledPin_3 = 3;
-
 //Setup message bytes
 
 byte inputByte_0;
@@ -23,15 +16,25 @@ byte inputByte_3;
 
 byte inputByte_4;
 
+byte inputByte_5;
+
+byte inputByte_6;
+
+byte inputByte_7;
+
+byte inputByte_8;
+
+byte inputByte_9;
+
 //Setup
 
 void setup() {
   Serial.begin(9600); 
-  pinMode(ledPin_3, OUTPUT);
+  pinMode(3, OUTPUT);
   Serial.begin(9600);
-  digitalWrite(ledPin_3, HIGH);//
+  digitalWrite(3, HIGH);//
   delay(250);//
-  digitalWrite(ledPin_3, LOW);//
+  digitalWrite(3, LOW);//
   delay(250);//
 }
 
@@ -40,7 +43,7 @@ void setup() {
 void loop() {
 
   //Read Buffer
-  if (Serial.available() == 5) 
+  if (Serial.available() == 10) 
   {
     //Read buffer
     inputByte_0 = Serial.read();
@@ -51,17 +54,21 @@ void loop() {
     delay(100);      
     inputByte_3 = Serial.read();
     delay(100);
-    inputByte_4 = Serial.read();   
+    inputByte_4 = Serial.read(); 
+    delay(100);
+    inputByte_5 = Serial.read();  
+    delay(100);
+    inputByte_6 = Serial.read(); 
+    delay(100);
+    inputByte_7 = Serial.read();
+    delay(100);
+    inputByte_8 = Serial.read(); 
+    delay(100);
+    inputByte_9 = Serial.read();  
   }
   //Check for start of Message
   if(inputByte_0 == 16)
   {       
-    Serial.println("Looping"); 
-    Serial.println(inputByte_0);
-    Serial.println(inputByte_1);
-    Serial.println(inputByte_2);
-    Serial.println(inputByte_3);
-    Serial.println(inputByte_4);
        //Detect Command type
        switch (inputByte_1) 
        {
@@ -77,7 +84,7 @@ void loop() {
                 }
                 else
                 {
-                  digitalWrite(ledPin_3, LOW); 
+                  digitalWrite(inputByte_4, LOW); 
                   break;
                 }
               break;
@@ -85,16 +92,24 @@ void loop() {
             break;
           case 128:
             //Say hello
-            Serial.print("HELLO FROM ARDUINO");
+            Serial.print("CONNECTED");
             break;
         } 
-        //Clear Message bytes
+        //Let the PC know we are ready for more data
+        if(inputByte_1 != 128){
+          Serial.print("READY TO RECEIVE");
+        }
+        
+         //Clear Message bytes
         inputByte_0 = 0;
         inputByte_1 = 0;
         inputByte_2 = 0;
         inputByte_3 = 0;
         inputByte_4 = 0;
-        //Let the PC know we are ready for more data
-        Serial.print("-READY TO RECEIVE");
+        inputByte_5 = 0;
+        inputByte_6 = 0;
+        inputByte_7 = 0;
+        inputByte_8 = 0;
+        inputByte_9 = 0;
   }
 }

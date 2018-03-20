@@ -11,9 +11,9 @@ namespace InterCapstone.FormApp
     public class ArduinoController
     {
 
-        SerialPort currentPort;
-        string[] ports;
-        bool portFound;
+        public SerialPort currentPort;
+        public string[] ports;
+        public bool portFound;
 
         public static string[] GetPorts()
         {
@@ -25,6 +25,7 @@ namespace InterCapstone.FormApp
             try
             {
                 string[] ports = SerialPort.GetPortNames();
+                this.ports = ports;
                 foreach (string port in ports)
                 {
                     currentPort = new SerialPort(port, 9600);
@@ -44,25 +45,17 @@ namespace InterCapstone.FormApp
             }
         }
 
-        public bool SendCommandToArduino()
-        {
-            return true;
-        }
         public bool DetectArduino()
         {
+            int bufferSize = 10;
+            byte[] buffer = new byte[] { Convert.ToByte(16), Convert.ToByte(128), Convert.ToByte(0), Convert.ToByte(0), Convert.ToByte(0), Convert.ToByte(0), Convert.ToByte(0), Convert.ToByte(0), Convert.ToByte(0), Convert.ToByte(0), Convert.ToByte(0) };
+
             try
             {
-                //The below setting are for the Hello handshake
-                byte[] buffer = new byte[5];
-                buffer[0] = Convert.ToByte(16);
-                buffer[1] = Convert.ToByte(127);
-                buffer[2] = Convert.ToByte(4);
-                buffer[3] = Convert.ToByte(0);
-                buffer[4] = Convert.ToByte(3);
                 int intReturnASCII = 0;
                 char charReturnValue = (Char)intReturnASCII;
-                currentPort.Open();
-                currentPort.Write(buffer, 0, 5);
+                this.currentPort.Open();
+                this.currentPort.Write(buffer, 0, bufferSize);
                 Thread.Sleep(1000);
                 int count = currentPort.BytesToRead;
                 string returnMessage = "";
@@ -74,7 +67,55 @@ namespace InterCapstone.FormApp
                 }
                 var PortName = returnMessage;
                 currentPort.Close();
-                if (returnMessage.Contains("HELLO FROM ARDUINO"))
+                if (returnMessage.Contains("CONNECTED"))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+        public bool SendCommandToArduino()
+        {
+            return true;
+        }
+        public bool SendCommandToPin(string COMMAND, int PIN)
+        {
+            int bufferSize = 10;
+            byte[] buffer = new byte[bufferSize];
+            switch (COMMAND)
+            {
+                case "HIGH":
+                    buffer = new byte[] { Convert.ToByte(16), Convert.ToByte(127), Convert.ToByte(4), Convert.ToByte(255), Convert.ToByte(PIN), Convert.ToByte(0), Convert.ToByte(0), Convert.ToByte(0), Convert.ToByte(0), Convert.ToByte(0) };
+                    break;
+                case "LOW":
+                    buffer = new byte[] { Convert.ToByte(16), Convert.ToByte(127), Convert.ToByte(4), Convert.ToByte(0), Convert.ToByte(PIN), Convert.ToByte(0), Convert.ToByte(0), Convert.ToByte(0), Convert.ToByte(0), Convert.ToByte(0) };
+                    break;
+            }
+            try
+            {
+                int intReturnASCII = 0;
+                char charReturnValue = (Char)intReturnASCII;
+                this.currentPort.Open();
+                this.currentPort.Write(buffer, 0, bufferSize);
+                Thread.Sleep(1000);
+                int count = currentPort.BytesToRead;
+                string returnMessage = "";
+                while (count > 0)
+                {
+                    intReturnASCII = currentPort.ReadByte();
+                    returnMessage = returnMessage + Convert.ToChar(intReturnASCII);
+                    count--;
+                }
+                var PortName = returnMessage;
+                currentPort.Close();
+                if (returnMessage.Contains("READY TO RECEIVE"))
                 {
                     return true;
                 }
