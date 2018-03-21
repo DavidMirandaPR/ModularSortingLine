@@ -35,10 +35,12 @@ namespace InterCapstone.FormApp
             this.setupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DashboardPanel = new System.Windows.Forms.Panel();
+            this.Btn_CMDTest = new System.Windows.Forms.Button();
             this.Btn_GetPorts = new System.Windows.Forms.Button();
             this.ComPortsDropDown = new System.Windows.Forms.ComboBox();
             this.Btn_LEDOff = new System.Windows.Forms.Button();
             this.Btn_LEDOn = new System.Windows.Forms.Button();
+            this.ShapeDetectedLabel = new System.Windows.Forms.Label();
             this.MenuStrip.SuspendLayout();
             this.DashboardPanel.SuspendLayout();
             this.SuspendLayout();
@@ -78,6 +80,8 @@ namespace InterCapstone.FormApp
             // 
             // DashboardPanel
             // 
+            this.DashboardPanel.Controls.Add(this.ShapeDetectedLabel);
+            this.DashboardPanel.Controls.Add(this.Btn_CMDTest);
             this.DashboardPanel.Controls.Add(this.Btn_GetPorts);
             this.DashboardPanel.Controls.Add(this.ComPortsDropDown);
             this.DashboardPanel.Controls.Add(this.Btn_LEDOff);
@@ -87,6 +91,16 @@ namespace InterCapstone.FormApp
             this.DashboardPanel.Size = new System.Drawing.Size(763, 461);
             this.DashboardPanel.TabIndex = 1;
             this.DashboardPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // Btn_CMDTest
+            // 
+            this.Btn_CMDTest.Location = new System.Drawing.Point(261, 28);
+            this.Btn_CMDTest.Name = "Btn_CMDTest";
+            this.Btn_CMDTest.Size = new System.Drawing.Size(142, 23);
+            this.Btn_CMDTest.TabIndex = 4;
+            this.Btn_CMDTest.Text = "Test CMD";
+            this.Btn_CMDTest.UseVisualStyleBackColor = true;
+            this.Btn_CMDTest.Click += new System.EventHandler(this.Btn_CMDTest_Click);
             // 
             // Btn_GetPorts
             // 
@@ -127,6 +141,16 @@ namespace InterCapstone.FormApp
             this.Btn_LEDOn.UseVisualStyleBackColor = true;
             this.Btn_LEDOn.Click += new System.EventHandler(this.button1_Click);
             // 
+            // ShapeDetectedLabel
+            // 
+            this.ShapeDetectedLabel.AutoSize = true;
+            this.ShapeDetectedLabel.Location = new System.Drawing.Point(356, 132);
+            this.ShapeDetectedLabel.Name = "ShapeDetectedLabel";
+            this.ShapeDetectedLabel.Size = new System.Drawing.Size(114, 17);
+            this.ShapeDetectedLabel.TabIndex = 5;
+            this.ShapeDetectedLabel.Text = "Shape Detected:";
+            this.ShapeDetectedLabel.Click += new System.EventHandler(this.ShapeDetectedLabel_Click);
+            // 
             // CapstoneFormApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -141,6 +165,7 @@ namespace InterCapstone.FormApp
             this.MenuStrip.ResumeLayout(false);
             this.MenuStrip.PerformLayout();
             this.DashboardPanel.ResumeLayout(false);
+            this.DashboardPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -157,6 +182,8 @@ namespace InterCapstone.FormApp
         private System.Windows.Forms.Button Btn_LEDOff;
         private System.Windows.Forms.Button Btn_GetPorts;
         private System.Windows.Forms.ComboBox ComPortsDropDown;
+        private Button Btn_CMDTest;
+        public Label ShapeDetectedLabel;
     }
 }
 

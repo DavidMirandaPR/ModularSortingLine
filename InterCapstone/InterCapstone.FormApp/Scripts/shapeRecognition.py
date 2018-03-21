@@ -2,12 +2,14 @@ import numpy as np
 import cv2
 import xml.etree.cElementTree as ET
 
+print("Executing Shape Recognition Script");
 #activate opencv-env
 # ====================== Step 1 ======================
 #              Load the image and resize
-img = cv2.imread("C:/Workspaces/Products/InterCapstone/Capstone2018/Capstone2018/Content/img/box.jpeg")
+img = cv2.imread("C:/Workspaces/Products/ModularSortingLine/InterCapstone/InterCapstone.FormApp/Content/img/box.jpeg")
+
 img = cv2.resize(img, (400,400))
-#cv2.imshow("Original Picture", img)
+cv2.imshow("Original Picture", img)
 
 # ====================== Step 2 ======================
 #              Turn Image to Grayscale
@@ -42,7 +44,7 @@ for cnt in contours:
     if(len(approx) == 4):
         print("SQUARE!")
         # ====================== Create XML ======================
-        root = ET.Element("Object")
+        root = ET.Element("Package")
 
         ET.SubElement(root, "Shape", name="shape").text = "SQUARE"
         #ET.SubElement(doc, "Color", name="color").text = "BLUE"

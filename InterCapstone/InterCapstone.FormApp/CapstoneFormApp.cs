@@ -54,5 +54,17 @@ namespace InterCapstone.FormApp
             arduinoController.SetComPort();
             arduinoController.SendCommandToPin("LOW", 3);
         }
+
+        private void Btn_CMDTest_Click(object sender, EventArgs e)
+        {
+            CommandController cmdController = new CommandController();
+            //cmdController.ExecutePythonScript("test");
+            cmdController.ExecutePythonScriptFromCMD("shapeRecognition", this);
+        }
+
+        private void ShapeDetectedLabel_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
