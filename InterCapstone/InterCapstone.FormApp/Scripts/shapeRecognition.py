@@ -9,7 +9,7 @@ print("Executing Shape Recognition Script");
 img = cv2.imread("C:/Workspaces/Products/ModularSortingLine/InterCapstone/InterCapstone.FormApp/Content/img/box.jpeg")
 
 img = cv2.resize(img, (400,400))
-cv2.imshow("Original Picture", img)
+#cv2.imshow("Original Picture", img)
 
 # ====================== Step 2 ======================
 #              Turn Image to Grayscale
@@ -46,7 +46,7 @@ for cnt in contours:
         # ====================== Create XML ======================
         root = ET.Element("Package")
 
-        ET.SubElement(root, "Shape", name="shape").text = "SQUARE"
+        ET.SubElement(root, "Shape", name="shape").text = "TRIANGLE"
         #ET.SubElement(doc, "Color", name="color").text = "BLUE"
 
         tree = ET.ElementTree(root)

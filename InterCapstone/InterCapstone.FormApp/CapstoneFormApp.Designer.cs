@@ -35,12 +35,16 @@ namespace InterCapstone.FormApp
             this.setupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DashboardPanel = new System.Windows.Forms.Panel();
+            this.ShapeDetectedLabel = new System.Windows.Forms.Label();
             this.Btn_CMDTest = new System.Windows.Forms.Button();
             this.Btn_GetPorts = new System.Windows.Forms.Button();
             this.ComPortsDropDown = new System.Windows.Forms.ComboBox();
             this.Btn_LEDOff = new System.Windows.Forms.Button();
             this.Btn_LEDOn = new System.Windows.Forms.Button();
-            this.ShapeDetectedLabel = new System.Windows.Forms.Label();
+            this.ColorsDropDown = new System.Windows.Forms.ComboBox();
+            this.ShapesDropDown = new System.Windows.Forms.ComboBox();
+            this.ColorsLabel = new System.Windows.Forms.Label();
+            this.ShapesLabel = new System.Windows.Forms.Label();
             this.MenuStrip.SuspendLayout();
             this.DashboardPanel.SuspendLayout();
             this.SuspendLayout();
@@ -80,6 +84,10 @@ namespace InterCapstone.FormApp
             // 
             // DashboardPanel
             // 
+            this.DashboardPanel.Controls.Add(this.ShapesLabel);
+            this.DashboardPanel.Controls.Add(this.ColorsLabel);
+            this.DashboardPanel.Controls.Add(this.ShapesDropDown);
+            this.DashboardPanel.Controls.Add(this.ColorsDropDown);
             this.DashboardPanel.Controls.Add(this.ShapeDetectedLabel);
             this.DashboardPanel.Controls.Add(this.Btn_CMDTest);
             this.DashboardPanel.Controls.Add(this.Btn_GetPorts);
@@ -92,13 +100,24 @@ namespace InterCapstone.FormApp
             this.DashboardPanel.TabIndex = 1;
             this.DashboardPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
+            // ShapeDetectedLabel
+            // 
+            this.ShapeDetectedLabel.AutoSize = true;
+            this.ShapeDetectedLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ShapeDetectedLabel.Location = new System.Drawing.Point(409, 28);
+            this.ShapeDetectedLabel.Name = "ShapeDetectedLabel";
+            this.ShapeDetectedLabel.Size = new System.Drawing.Size(174, 25);
+            this.ShapeDetectedLabel.TabIndex = 5;
+            this.ShapeDetectedLabel.Text = "Shape Detected:";
+            this.ShapeDetectedLabel.Click += new System.EventHandler(this.ShapeDetectedLabel_Click);
+            // 
             // Btn_CMDTest
             // 
             this.Btn_CMDTest.Location = new System.Drawing.Point(261, 28);
             this.Btn_CMDTest.Name = "Btn_CMDTest";
             this.Btn_CMDTest.Size = new System.Drawing.Size(142, 23);
             this.Btn_CMDTest.TabIndex = 4;
-            this.Btn_CMDTest.Text = "Test CMD";
+            this.Btn_CMDTest.Text = "Get Shape";
             this.Btn_CMDTest.UseVisualStyleBackColor = true;
             this.Btn_CMDTest.Click += new System.EventHandler(this.Btn_CMDTest_Click);
             // 
@@ -123,9 +142,9 @@ namespace InterCapstone.FormApp
             // 
             // Btn_LEDOff
             // 
-            this.Btn_LEDOff.Location = new System.Drawing.Point(12, 72);
+            this.Btn_LEDOff.Location = new System.Drawing.Point(139, 101);
             this.Btn_LEDOff.Name = "Btn_LEDOff";
-            this.Btn_LEDOff.Size = new System.Drawing.Size(110, 23);
+            this.Btn_LEDOff.Size = new System.Drawing.Size(95, 23);
             this.Btn_LEDOff.TabIndex = 1;
             this.Btn_LEDOff.Text = "LED OFF";
             this.Btn_LEDOff.UseVisualStyleBackColor = true;
@@ -135,21 +154,47 @@ namespace InterCapstone.FormApp
             // 
             this.Btn_LEDOn.Location = new System.Drawing.Point(139, 72);
             this.Btn_LEDOn.Name = "Btn_LEDOn";
-            this.Btn_LEDOn.Size = new System.Drawing.Size(75, 23);
+            this.Btn_LEDOn.Size = new System.Drawing.Size(95, 23);
             this.Btn_LEDOn.TabIndex = 0;
             this.Btn_LEDOn.Text = "LED ON";
             this.Btn_LEDOn.UseVisualStyleBackColor = true;
             this.Btn_LEDOn.Click += new System.EventHandler(this.button1_Click);
             // 
-            // ShapeDetectedLabel
+            // ColorsDropDown
             // 
-            this.ShapeDetectedLabel.AutoSize = true;
-            this.ShapeDetectedLabel.Location = new System.Drawing.Point(356, 132);
-            this.ShapeDetectedLabel.Name = "ShapeDetectedLabel";
-            this.ShapeDetectedLabel.Size = new System.Drawing.Size(114, 17);
-            this.ShapeDetectedLabel.TabIndex = 5;
-            this.ShapeDetectedLabel.Text = "Shape Detected:";
-            this.ShapeDetectedLabel.Click += new System.EventHandler(this.ShapeDetectedLabel_Click);
+            this.ColorsDropDown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ColorsDropDown.FormattingEnabled = true;
+            this.ColorsDropDown.Location = new System.Drawing.Point(261, 87);
+            this.ColorsDropDown.Name = "ColorsDropDown";
+            this.ColorsDropDown.Size = new System.Drawing.Size(121, 24);
+            this.ColorsDropDown.TabIndex = 6;
+            // 
+            // ShapesDropDown
+            // 
+            this.ShapesDropDown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ShapesDropDown.FormattingEnabled = true;
+            this.ShapesDropDown.Location = new System.Drawing.Point(414, 87);
+            this.ShapesDropDown.Name = "ShapesDropDown";
+            this.ShapesDropDown.Size = new System.Drawing.Size(121, 24);
+            this.ShapesDropDown.TabIndex = 7;
+            // 
+            // ColorsLabel
+            // 
+            this.ColorsLabel.AutoSize = true;
+            this.ColorsLabel.Location = new System.Drawing.Point(258, 67);
+            this.ColorsLabel.Name = "ColorsLabel";
+            this.ColorsLabel.Size = new System.Drawing.Size(52, 17);
+            this.ColorsLabel.TabIndex = 8;
+            this.ColorsLabel.Text = "Colors:";
+            // 
+            // ShapesLabel
+            // 
+            this.ShapesLabel.AutoSize = true;
+            this.ShapesLabel.Location = new System.Drawing.Point(411, 67);
+            this.ShapesLabel.Name = "ShapesLabel";
+            this.ShapesLabel.Size = new System.Drawing.Size(60, 17);
+            this.ShapesLabel.TabIndex = 9;
+            this.ShapesLabel.Text = "Shapes:";
             // 
             // CapstoneFormApp
             // 
@@ -184,6 +229,10 @@ namespace InterCapstone.FormApp
         private System.Windows.Forms.ComboBox ComPortsDropDown;
         private Button Btn_CMDTest;
         public Label ShapeDetectedLabel;
+        private ComboBox ColorsDropDown;
+        private ComboBox ShapesDropDown;
+        private Label ColorsLabel;
+        private Label ShapesLabel;
     }
 }
 

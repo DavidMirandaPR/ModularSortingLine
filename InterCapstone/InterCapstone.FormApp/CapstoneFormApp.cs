@@ -16,9 +16,15 @@ namespace InterCapstone.FormApp
     public partial class CapstoneFormApp : Form
     {
         ArduinoController arduinoController = new ArduinoController();
+        string[] colors = new string[] { "<select>", "RED", "BLUE", "GREEN" };
+        string[] shapes = new string[] { "<select>", "SQUARE", "CUBE", "TRIANGLE" };
+
+
         public CapstoneFormApp()
         {
             InitializeComponent();
+            this.ColorsDropDown.DataSource = colors;
+            this.ShapesDropDown.DataSource = shapes;
         }
 
         private void CapstoneFormApp_Load(object sender, EventArgs e)

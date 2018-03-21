@@ -15,9 +15,12 @@ namespace InterCapstone.FormApp
 {
     public class CommandController
     {
+        public string realPath = System.IO.Directory.GetParent((System.IO.Directory.GetParent(Environment.CurrentDirectory).ToString())).ToString();
+
         public string PythonEnvironmentName = "capstone";
         public string PythonScriptsPath = "Scripts/";
-        public string XMLPath = "Scripts/results.xml";
+        //public string XMLPath = "Scripts/results.xml";
+
         List<Package> packageList = new List<Package>();
 
         public bool ExecutePythonScript(string fileName)
@@ -46,6 +49,7 @@ namespace InterCapstone.FormApp
         public void ExecutePythonScriptFromCMD(string fileName, CapstoneFormApp DashboardForm)
         {
             Package myPackage = new Package();
+            string realPath = System.IO.Directory.GetParent((System.IO.Directory.GetParent(Environment.CurrentDirectory).ToString())).ToString();
 
             //Setup CMD
             Process cmd = new Process();
@@ -64,7 +68,7 @@ namespace InterCapstone.FormApp
             cmd.StandardInput.Close();
             cmd.WaitForExit();
 
-            myPackage = XMLResultsDeserializer(myPackage, XMLPath);
+            myPackage = XMLResultsDeserializer(myPackage, $"{realPath}\\Scripts\\results.xml");
             DashboardForm.ShapeDetectedLabel.Text = $"Shape Detected: {myPackage.Shape}";
             Console.WriteLine(cmd.StandardOutput.ReadToEnd());
 
