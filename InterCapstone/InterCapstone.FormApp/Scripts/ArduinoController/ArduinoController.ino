@@ -1,9 +1,5 @@
-/*
+#include <Servo.h>
 
- * Serial Port Monitor
- *
- * 
- */
 //Setup message bytes
 
 byte inputByte_0;
@@ -26,11 +22,14 @@ byte inputByte_8;
 
 byte inputByte_9;
 
+Servo ServoOne;
+
 //Setup
 
 void setup() {
   Serial.begin(9600); 
   pinMode(3, OUTPUT);
+  ServoOne.attach(9);
   Serial.begin(9600);
   digitalWrite(3, HIGH);//
   delay(250);//
@@ -76,6 +75,7 @@ void loop() {
              //Set PIN and value
              switch (inputByte_2)
             {
+              //PIN HIGH OR LOW
               case 4:
                 if(inputByte_3 == 255)
                 {
@@ -87,7 +87,29 @@ void loop() {
                   digitalWrite(inputByte_4, LOW); 
                   break;
                 }
-              break;
+                break;
+              //OPEN DOOR
+              case 5:
+              //Servo One
+                if(inputByte_3 == 9){
+                  //ServoOne OPEN 16,127,5,9,1
+                  if(inputByte_4 == 1){
+                    for (int i = 10; i <= 180; i += 1){
+                      ServoOne.write(i);
+                      delay(15);
+                    }
+                  }
+                  //ServoOne CLOSE 16,127,5,9,2
+                  if(inputByte_4 == 2){
+                    for (int i = 180; i >= 10; i -= 1){
+                        ServoOne.write(i);
+                        delay(15);
+                      }
+                  }
+                }
+                  break;
+              default:
+                break;
             } 
             break;
           case 128:

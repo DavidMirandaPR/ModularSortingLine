@@ -94,6 +94,16 @@ namespace InterCapstone.FormApp
                 case "LOW":
                     buffer = new byte[] { Convert.ToByte(16), Convert.ToByte(127), Convert.ToByte(4), Convert.ToByte(0), Convert.ToByte(PIN), Convert.ToByte(0), Convert.ToByte(0), Convert.ToByte(0), Convert.ToByte(0), Convert.ToByte(0) };
                     break;
+                case "DOOR":
+                    //Open Servo One
+                    if (PIN == 1)
+                    {
+                        buffer = new byte[] { Convert.ToByte(16), Convert.ToByte(127), Convert.ToByte(5), Convert.ToByte(9), Convert.ToByte(1), Convert.ToByte(0), Convert.ToByte(0), Convert.ToByte(0), Convert.ToByte(0), Convert.ToByte(0) };
+                    }else if (PIN == 2)
+                    {
+                        buffer = new byte[] { Convert.ToByte(16), Convert.ToByte(127), Convert.ToByte(5), Convert.ToByte(9), Convert.ToByte(2), Convert.ToByte(0), Convert.ToByte(0), Convert.ToByte(0), Convert.ToByte(0), Convert.ToByte(0) };
+                    }
+                    break;
             }
             try
             {

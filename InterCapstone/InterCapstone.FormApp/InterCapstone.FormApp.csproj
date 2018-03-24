@@ -79,6 +79,7 @@
     </Compile>
     <Compile Include="CommandController.cs" />
     <Compile Include="Models\Package.cs" />
+    <Compile Include="Models\Servo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="CapstoneFormApp.resx">

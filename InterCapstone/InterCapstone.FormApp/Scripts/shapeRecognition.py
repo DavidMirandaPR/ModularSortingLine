@@ -46,7 +46,7 @@ for cnt in contours:
         # ====================== Create XML ======================
         root = ET.Element("Package")
 
-        ET.SubElement(root, "Shape", name="shape").text = "TRIANGLE"
+        ET.SubElement(root, "Shape", name="shape").text = "SQUARE"
         #ET.SubElement(doc, "Color", name="color").text = "BLUE"
 
         tree = ET.ElementTree(root)

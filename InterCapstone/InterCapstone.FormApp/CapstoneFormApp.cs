@@ -37,10 +37,17 @@ namespace InterCapstone.FormApp
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Btn_LEDOn_Click(object sender, EventArgs e)
         {
             arduinoController.SetComPort();
-            arduinoController.SendCommandToPin("HIGH",3);
+            arduinoController.SendCommandToPin("HIGH", 3);
+        }
+
+        private void LedOff_Btn_Click(object sender, EventArgs e)
+        {
+            arduinoController.SetComPort();
+            arduinoController.SendCommandToPin("LOW", 3);
+
         }
 
         private void button1_Click_1(object sender, EventArgs e)
@@ -55,11 +62,7 @@ namespace InterCapstone.FormApp
 
         }
 
-        private void LedOff_Btn_Click(object sender, EventArgs e)
-        {
-            arduinoController.SetComPort();
-            arduinoController.SendCommandToPin("LOW", 3);
-        }
+        
 
         private void Btn_CMDTest_Click(object sender, EventArgs e)
         {
@@ -71,6 +74,18 @@ namespace InterCapstone.FormApp
         private void ShapeDetectedLabel_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void OpenDoorOne_Btn_Click(object sender, EventArgs e)
+        {
+            arduinoController.SetComPort();
+            arduinoController.SendCommandToPin("DOOR", 1);
+        }
+
+        private void CloseDoorOne_Btn_Click(object sender, EventArgs e)
+        {
+            arduinoController.SetComPort();
+            arduinoController.SendCommandToPin("DOOR", 2);
         }
     }
 }

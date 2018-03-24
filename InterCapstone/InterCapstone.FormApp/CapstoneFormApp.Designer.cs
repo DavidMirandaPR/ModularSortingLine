@@ -35,16 +35,18 @@ namespace InterCapstone.FormApp
             this.setupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DashboardPanel = new System.Windows.Forms.Panel();
+            this.ShapesLabel = new System.Windows.Forms.Label();
+            this.ColorsLabel = new System.Windows.Forms.Label();
+            this.ShapesDropDown = new System.Windows.Forms.ComboBox();
+            this.ColorsDropDown = new System.Windows.Forms.ComboBox();
             this.ShapeDetectedLabel = new System.Windows.Forms.Label();
             this.Btn_CMDTest = new System.Windows.Forms.Button();
             this.Btn_GetPorts = new System.Windows.Forms.Button();
             this.ComPortsDropDown = new System.Windows.Forms.ComboBox();
             this.Btn_LEDOff = new System.Windows.Forms.Button();
             this.Btn_LEDOn = new System.Windows.Forms.Button();
-            this.ColorsDropDown = new System.Windows.Forms.ComboBox();
-            this.ShapesDropDown = new System.Windows.Forms.ComboBox();
-            this.ColorsLabel = new System.Windows.Forms.Label();
-            this.ShapesLabel = new System.Windows.Forms.Label();
+            this.OpenDoorOne_Btn = new System.Windows.Forms.Button();
+            this.CloseDoorOne_Btn = new System.Windows.Forms.Button();
             this.MenuStrip.SuspendLayout();
             this.DashboardPanel.SuspendLayout();
             this.SuspendLayout();
@@ -84,6 +86,8 @@ namespace InterCapstone.FormApp
             // 
             // DashboardPanel
             // 
+            this.DashboardPanel.Controls.Add(this.CloseDoorOne_Btn);
+            this.DashboardPanel.Controls.Add(this.OpenDoorOne_Btn);
             this.DashboardPanel.Controls.Add(this.ShapesLabel);
             this.DashboardPanel.Controls.Add(this.ColorsLabel);
             this.DashboardPanel.Controls.Add(this.ShapesDropDown);
@@ -99,6 +103,42 @@ namespace InterCapstone.FormApp
             this.DashboardPanel.Size = new System.Drawing.Size(763, 461);
             this.DashboardPanel.TabIndex = 1;
             this.DashboardPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // ShapesLabel
+            // 
+            this.ShapesLabel.AutoSize = true;
+            this.ShapesLabel.Location = new System.Drawing.Point(411, 67);
+            this.ShapesLabel.Name = "ShapesLabel";
+            this.ShapesLabel.Size = new System.Drawing.Size(60, 17);
+            this.ShapesLabel.TabIndex = 9;
+            this.ShapesLabel.Text = "Shapes:";
+            // 
+            // ColorsLabel
+            // 
+            this.ColorsLabel.AutoSize = true;
+            this.ColorsLabel.Location = new System.Drawing.Point(258, 67);
+            this.ColorsLabel.Name = "ColorsLabel";
+            this.ColorsLabel.Size = new System.Drawing.Size(52, 17);
+            this.ColorsLabel.TabIndex = 8;
+            this.ColorsLabel.Text = "Colors:";
+            // 
+            // ShapesDropDown
+            // 
+            this.ShapesDropDown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ShapesDropDown.FormattingEnabled = true;
+            this.ShapesDropDown.Location = new System.Drawing.Point(414, 87);
+            this.ShapesDropDown.Name = "ShapesDropDown";
+            this.ShapesDropDown.Size = new System.Drawing.Size(121, 24);
+            this.ShapesDropDown.TabIndex = 7;
+            // 
+            // ColorsDropDown
+            // 
+            this.ColorsDropDown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ColorsDropDown.FormattingEnabled = true;
+            this.ColorsDropDown.Location = new System.Drawing.Point(261, 87);
+            this.ColorsDropDown.Name = "ColorsDropDown";
+            this.ColorsDropDown.Size = new System.Drawing.Size(121, 24);
+            this.ColorsDropDown.TabIndex = 6;
             // 
             // ShapeDetectedLabel
             // 
@@ -142,7 +182,7 @@ namespace InterCapstone.FormApp
             // 
             // Btn_LEDOff
             // 
-            this.Btn_LEDOff.Location = new System.Drawing.Point(139, 101);
+            this.Btn_LEDOff.Location = new System.Drawing.Point(154, 101);
             this.Btn_LEDOff.Name = "Btn_LEDOff";
             this.Btn_LEDOff.Size = new System.Drawing.Size(95, 23);
             this.Btn_LEDOff.TabIndex = 1;
@@ -152,49 +192,33 @@ namespace InterCapstone.FormApp
             // 
             // Btn_LEDOn
             // 
-            this.Btn_LEDOn.Location = new System.Drawing.Point(139, 72);
+            this.Btn_LEDOn.Location = new System.Drawing.Point(154, 72);
             this.Btn_LEDOn.Name = "Btn_LEDOn";
             this.Btn_LEDOn.Size = new System.Drawing.Size(95, 23);
             this.Btn_LEDOn.TabIndex = 0;
             this.Btn_LEDOn.Text = "LED ON";
             this.Btn_LEDOn.UseVisualStyleBackColor = true;
-            this.Btn_LEDOn.Click += new System.EventHandler(this.button1_Click);
+            this.Btn_LEDOn.Click += new System.EventHandler(this.Btn_LEDOn_Click);
             // 
-            // ColorsDropDown
+            // OpenDoorOne_Btn
             // 
-            this.ColorsDropDown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ColorsDropDown.FormattingEnabled = true;
-            this.ColorsDropDown.Location = new System.Drawing.Point(261, 87);
-            this.ColorsDropDown.Name = "ColorsDropDown";
-            this.ColorsDropDown.Size = new System.Drawing.Size(121, 24);
-            this.ColorsDropDown.TabIndex = 6;
+            this.OpenDoorOne_Btn.Location = new System.Drawing.Point(13, 72);
+            this.OpenDoorOne_Btn.Name = "OpenDoorOne_Btn";
+            this.OpenDoorOne_Btn.Size = new System.Drawing.Size(135, 23);
+            this.OpenDoorOne_Btn.TabIndex = 10;
+            this.OpenDoorOne_Btn.Text = "OPEN DOOR #1";
+            this.OpenDoorOne_Btn.UseVisualStyleBackColor = true;
+            this.OpenDoorOne_Btn.Click += new System.EventHandler(this.OpenDoorOne_Btn_Click);
             // 
-            // ShapesDropDown
+            // CloseDoorOne_Btn
             // 
-            this.ShapesDropDown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ShapesDropDown.FormattingEnabled = true;
-            this.ShapesDropDown.Location = new System.Drawing.Point(414, 87);
-            this.ShapesDropDown.Name = "ShapesDropDown";
-            this.ShapesDropDown.Size = new System.Drawing.Size(121, 24);
-            this.ShapesDropDown.TabIndex = 7;
-            // 
-            // ColorsLabel
-            // 
-            this.ColorsLabel.AutoSize = true;
-            this.ColorsLabel.Location = new System.Drawing.Point(258, 67);
-            this.ColorsLabel.Name = "ColorsLabel";
-            this.ColorsLabel.Size = new System.Drawing.Size(52, 17);
-            this.ColorsLabel.TabIndex = 8;
-            this.ColorsLabel.Text = "Colors:";
-            // 
-            // ShapesLabel
-            // 
-            this.ShapesLabel.AutoSize = true;
-            this.ShapesLabel.Location = new System.Drawing.Point(411, 67);
-            this.ShapesLabel.Name = "ShapesLabel";
-            this.ShapesLabel.Size = new System.Drawing.Size(60, 17);
-            this.ShapesLabel.TabIndex = 9;
-            this.ShapesLabel.Text = "Shapes:";
+            this.CloseDoorOne_Btn.Location = new System.Drawing.Point(13, 101);
+            this.CloseDoorOne_Btn.Name = "CloseDoorOne_Btn";
+            this.CloseDoorOne_Btn.Size = new System.Drawing.Size(135, 23);
+            this.CloseDoorOne_Btn.TabIndex = 11;
+            this.CloseDoorOne_Btn.Text = "CLOSE DOOR #1";
+            this.CloseDoorOne_Btn.UseVisualStyleBackColor = true;
+            this.CloseDoorOne_Btn.Click += new System.EventHandler(this.CloseDoorOne_Btn_Click);
             // 
             // CapstoneFormApp
             // 
@@ -233,6 +257,8 @@ namespace InterCapstone.FormApp
         private ComboBox ShapesDropDown;
         private Label ColorsLabel;
         private Label ShapesLabel;
+        private Button CloseDoorOne_Btn;
+        private Button OpenDoorOne_Btn;
     }
 }
 
